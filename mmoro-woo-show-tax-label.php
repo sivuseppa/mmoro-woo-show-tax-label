@@ -65,17 +65,17 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 				<script type="text/javascript">
 
 					var tax_array = <?php echo json_encode($tax_array); ?>;
-
+					
 					jQuery(document).ready(function() {
-						jQuery( '.variations_form' ).each( function() {
+						
 							jQuery(this).on( 'found_variation', function( event, variation ) {
-								console.log(variation);//all details here
-								var price = variation.display_price;//selectedprice
-								console.log(price);
+								var variation_id = jQuery( 'input[name="variation_id"]' ).val();
+								jQuery("p#variation-tax-element").html(tax_array[variation_id]);
+								
 							});
-						});
+						
 					});
-
+					
 					jQuery( ".variations_form" ).on( "woocommerce_variation_select_change", function () {
 						
 						jQuery(this).on( 'found_variation', function( event, variation ) {
